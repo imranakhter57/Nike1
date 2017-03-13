@@ -1,81 +1,40 @@
-<?php
-   include("config.php");
-   session_start();
-   $error="";
-   if($_SERVER["REQUEST_METHOD"] == "POST") {
-      // username and password sent from form 
-      
-      $myusername = mysqli_real_escape_string($db,$_POST['username']);
-      $mypassword = mysqli_real_escape_string($db,$_POST['password']); 
-      
-      $sql = "SELECT username FROM users WHERE username = '$myusername' and pass = '$mypassword'";
-      $result = mysqli_query($db,$sql);
-      $row = mysqli_fetch_array($result,MYSQLI_ASSOC);
-      if (!$row) {
-    printf("Error: %s\n", mysqli_error($db));
-    exit();
-}
-      $active = $row['active'];
-      
-      $count = mysqli_num_rows($result);
-      
-      // If result matched $myusername and $mypassword, table row must be 1 row
-		
-      if($count == 1) {
-         $_SESSION['login_user'] = $myusername;
-         
-         header("location: welcome.php");
-      }else {
-         $error = "Your Login Name or Password is invalid";
-      }
-   }
-?>
+
 <!DOCTYPE html>
 <html>
-   
-   <head>
-      <title>Login Page</title>
-      
-      <style type = "text/css">
-         body {
-            font-family:Arial, Helvetica, sans-serif;
-            font-size:14px;
-         }
-         
-         label {
-            font-weight:bold;
-            width:100px;
-            font-size:14px;
-         }
-         
-         .box {
-            border:#666666 solid 1px;
-         }
-      </style>
-      
-   </head>
-   
-   <body bgcolor = "#FFFFFF">
-	
-      <div align = "center">
-         <div style = "width:300px; border: solid 1px #333333; " align = "left">
-            <div style = "background-color:#333333; color:#FFFFFF; padding:3px;"><b>Login</b></div>
-				
-            <div style = "margin:30px">
-               
-               <form action = "" method = "post">
-                  <label>UserName  :</label><input type = "text" name = "username" class = "box"/><br /><br />
-                  <label>Password  :</label><input type = "password" name = "password" class = "box" /><br/><br />
-                  <input type = "submit" value = " Submit "/><br />
-               </form>
-               
-               <div style = "font-size:11px; color:#cc0000; margin-top:10px"><?php echo $error; ?></div>
-					
-            </div>
-				
-         </div>
-			
-      </div>
+<head>
+  <meta charset="UTF-8">
+  <title>Nike Login</title>
+	<link rel="styleSheet" href="css/style1.css">
+</head>
 
-   </body>
+<body>
+
+  <div class="login">
+    <h1>Login</h1>
+
+    <form class="form" method="post" action="login.php" id="form" >
+
+      <p class="field">
+        <input type="text" name="username" placeholder="username" id="username" required/>
+        <i class="fa fa-user"></i>
+      </p>
+
+      <p class="field">
+        <input type="password" name="password" placeholder="password" id ="password" required/>
+        <i class="fa fa-lock"></i>
+      </p>
+		<p class="msg" id="msg"></p>
+      <p class="submit"><input type="submit" name="sent" value="Log On" id="submit"></p>
+	  <p class="logout" id="logoutMsg"><?php if (isset($_GET['invalid_login'])) {
+          echo "Username or password invalid. Please verify the details";
+          }
+          elseif(isset($_GET['msg'])){
+                  echo "Logged out Successfully";
+                  
+              }?>
+              </p>
+
+    </form>
+  </div> <!--/ Login-->
+</body>
 </html>

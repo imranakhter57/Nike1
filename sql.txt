@@ -1,0 +1,39 @@
+************create users *****************
+CREATE TABLE users (
+    username varchar(255),
+    pass varchar(255),
+    adminflag int(1)
+);
+
+********create first table**********
+CREATE TABLE table1 (
+     s_id int NOT NULL AUTO_INCREMENT,
+     sever_lvl varchar(3),
+     tckt_no varchar(15),
+     sys_impact varchar(15),
+     descrp varchar(255),
+     open_time varchar(255),
+     close_time varchar(255),
+     add_comments varchar(255),
+     PRIMARY KEY (s_id)
+ )	
+
+
+********************create second table ********************
+CREATE TABLE table2 (
+    e_id int NOT NULL AUTO_INCREMENT,
+    add_events varchar(255),
+    PRIMARY KEY (e_id)
+);
+
+
+******************create third table *********************
+CREATE TABLE table3 (
+    g_id int NOT NULL AUTO_INCREMENT,
+    grp varchar(3),
+    sys_details varchar(15),
+    alert_count int(3),
+    action_plan varchar(255),
+    eta varchar(255),
+    PRIMARY KEY (g_id)
+);
