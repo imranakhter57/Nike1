@@ -1,4 +1,5 @@
 <?php
+session_start();
 include('config.php');
 $status=$_GET["status"];
 if  ($status =="disp"){   
@@ -10,9 +11,9 @@ while ($row=  mysqli_fetch_array($res)){
     echo "<td>";?><div  id="alert_count<?php echo $row["g_id"]; ?>"> <?php  echo $row["alert_count"]; ?></div> <?php echo "</td>";
     echo "<td>";?><div  id="action_plan<?php echo $row["g_id"]; ?>"> <?php  echo $row["action_plan"]; ?></div> <?php echo "</td>";
     echo "<td>";?><div  id="eta<?php echo $row["g_id"]; ?>"> <?php  echo $row["eta"]; ?></div> <?php echo "</td>";
-    echo "<td>";?> <input type="button" class="side"id="delete3<?php echo $row["g_id"];?>" name="<?php echo $row["g_id"];?>" value="delete"  onclick="delete3(<?php echo $row["g_id"];?>)"><br> 
+    if ($_SESSION['admin'] == 1) { echo "<td>"; ?> <input type="button" class="side"id="delete3<?php echo $row["g_id"];?>" name="<?php echo $row["g_id"];?>" value="delete"  onclick="delete3(<?php echo $row["g_id"];?>)"><br> 
      <input type="button" class="side" id="edit3<?php echo $row["g_id"];?>" name="<?php echo $row["g_id"];?>" value="edit"  onclick="edit3(<?php echo $row["g_id"];?>)"> 
-     <input type="button" class="side" id="update3<?php echo $row["g_id"];?>" name="<?php echo $row["g_id"];?>" value="update" style="visibility: hidden" onclick="update3(<?php echo $row["g_id"];?>)"> <?php echo "</td>";
+    <input type="button" class="side" id="update3<?php echo $row["g_id"];?>" name="<?php echo $row["g_id"];?>" value="update" style="visibility: hidden" onclick="update3(<?php echo $row["g_id"];?>)"> <?php echo "</td>";}
     echo"</tr>";
 }
 }

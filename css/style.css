@@ -151,7 +151,7 @@ header {
 .side{
   text-decoration:none;
   margin-right: 3px;
-  width: 100%;
+  width: 95%;
   text-align: center;
   font-size: 14px;
   font-family: "Roboto",'Open Sans',sans-serif;
@@ -191,6 +191,7 @@ header {
   border:1px solid black;
   font-size: 20px;
   font-family: "Roboto",'Open Sans',sans-serif;
+  flex:1;
 }
 
 
@@ -326,6 +327,9 @@ form .require{
 	padding-left:70px;
     overflow : hidden;
 	color: #002e86;
+}
+form .group{
+	width:17%;
 }
 @keyframes shadowFade {
   0% {

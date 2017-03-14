@@ -1,4 +1,5 @@
 <?php
+session_start();
 include('config.php');
 $status=$_GET["status"];
 if  ($status =="disp"){   
@@ -6,9 +7,9 @@ $res = mysqli_query($db, "select * from table2");
 while ($row=  mysqli_fetch_array($res)){
     echo "<tr>";
     echo "<td>";?> <div  id="add_events<?php echo $row["e_id"]; ?>"> &bull; &nbsp;<?php  echo $row["add_events"]; ?></div> <?php echo "</td>";
-    echo "<td>";?> <input type="button" class="side"id="delete2<?php echo $row["e_id"];?>" name="<?php echo $row["e_id"];?>" value="delete"  onclick="delete2(<?php echo $row["e_id"];?>)"><br> 
+    if ($_SESSION['admin'] == 1) {echo "<td>";?> <input type="button" class="side"id="delete2<?php echo $row["e_id"];?>" name="<?php echo $row["e_id"];?>" value="delete"  onclick="delete2(<?php echo $row["e_id"];?>)"><br> 
      <input type="button" class="side" id="edit2<?php echo $row["e_id"];?>" name="<?php echo $row["e_id"];?>" value="edit"  onclick="edit2(<?php echo $row["e_id"];?>)"> 
-     <input type="button" class="side" id="update2<?php echo $row["e_id"];?>" name="<?php echo $row["e_id"];?>" value="update" style="visibility: hidden" onclick="update2(<?php echo $row["e_id"];?>)"> <?php echo "</td>";
+    <input type="button" class="side" id="update2<?php echo $row["e_id"];?>" name="<?php echo $row["e_id"];?>" value="update" style="visibility: hidden" onclick="update2(<?php echo $row["e_id"];?>)"> <?php echo "</td>";}
     echo"</tr>";
 }
 }

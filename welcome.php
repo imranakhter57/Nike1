@@ -28,7 +28,9 @@
 			<th>Close time</th>
 			<th>Status</th>
 			<th >Additional comments</th>
+                         <?php if ($_SESSION['admin'] == 1){?>
 			<th>action</th>
+                         <?php }?>
 		</tr>
 		<tbody id="table1" class="table-hover">
                     <script>disp_data1();</script>
@@ -53,7 +55,9 @@
 		
 		<tr>
 			<th style="text-align:center;">Additional Events – Requiring Management visibility</th>
-			<th>Action</th>
+			<?php if ($_SESSION['admin'] == 1){?>
+			<th>action</th>
+                         <?php }?>
 		</tr>
 		<tbody id="table2" class="table-hover">
                 <script>disp_data2();</script>
@@ -90,7 +94,9 @@
 			<th>Alert Count</th>
 			<th>Action Plan</th>
 			<th>ETA</th>			
-			<th>Action</th>
+			<?php if ($_SESSION['admin'] == 1){?>
+			<th>action</th>
+                         <?php }?>
 		</tr>
 		<tbody id="table3" class="table-hover">
                     <script>disp_data3();</script>
@@ -99,10 +105,10 @@
         <?php if ($_SESSION['admin'] == 1){?>
 	<form id="hidden3">
 	<label><input type="text" class="group" id="group" required/></label>
-	<label><input type="text" class="sysDetails" id="sysDetails" required/></label>
-	<label><input type="text" class="alertCount" id="alertCount" required/></label>
-	<label><input type="text" class="actionPlan" id="actionPlan" required/></label>
-	<label><input type="text" class="eta" id="eta" required/></label></br>
+	<label><input type="text" class="group" id="sysDetails" required/></label>
+	<label><input type="text" class="group" id="alertCount" required/></label>
+	<label><input type="text" class="group" id="actionPlan" required/></label>
+	<label><input type="text" class="group" id="eta" required/></label></br>
 	<p>Please enter complete details</p>
 	<button type="button" onclick="clearThirdTable()">Clear</button><button type="button" class="add"  onclick="insert3()">Add</button>
 	</form>
